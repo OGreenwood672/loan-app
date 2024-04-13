@@ -20,8 +20,8 @@ export default function Navbar(props) {
             height: 100,
             width: "100%",
             padding: 0,
+            paddingBottom: 10,
             marginTop: 10,
-            // paddingBottom: 20,
         },
         nav_button: {
             display: "flex",

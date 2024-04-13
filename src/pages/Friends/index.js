@@ -3,8 +3,7 @@ import Navbar from "../../components/Navbar";
 
 import { globalstyles } from "../../constants/globalStyles";
 
-import userDB from "./usersDB";
-import { useEffect, useState } from "react";
+import Friend from "../../components/Friend";
 
 export default function Friends({ route, navigation }) {
 
@@ -50,45 +49,25 @@ export default function Friends({ route, navigation }) {
         }
     })
 
-    const [friendsInfo, setFriendsInfo] = useState([]);
+    // const [friendsInfo, setFriendsInfo] = useState([]);
     const friendsList = ["1"];
 
-    function getFriendsInfo() {
-        let _friendsInfo = [];
-        friendsList.forEach(friend => {
-            _friendsInfo.push(userDB[friend])
-        });
-        setFriendsInfo(_friendsInfo);
-    }
-    useEffect(getFriendsInfo, []);
+    // function getFriendsInfo() {
+    //     let _friendsInfo = [];
+    //     friendsList.forEach(friend => {
+    //         _friendsInfo.push(userDB[friend])
+    //     });
+    //     setFriendsInfo(_friendsInfo);
+    // }
+    // useEffect(getFriendsInfo, []);
 
-    function Friend(props) {
-
-        return (
-            <View style={styles.friend_main}>
-                <View style={[styles.friend_section, {width: "25%"}]}>
-                    <Image
-                        source={{ uri: props.info["pfp"] }}
-                        style={styles.pfp_image}
-                        onError={() => console.log('Error loading pfp image')}
-                    />
-                </View>
-                <View style={[styles.friend_section, {width: "50%"}]}>
-                    <Text style={styles.friend_name}>{props.info["name"]}</Text>
-                </View>
-                <View style={[styles.friend_section, {width: "25%"}]}>
-                    <Text style={styles.friend_credibility}>{props.info["credibility"]}</Text>
-                </View>
-            </View>
-        )
-    }
 
     return (
         <View style={[globalstyles.page, styles.centered]}>
             <View style={{height: 50}} />
             <Text style={styles.title}>Friends</Text>
-            {friendsInfo.length == 0 ? <Text>No Friends Yet</Text> : friendsInfo.map(friend => {
-                return <Friend key={friend["id"]} info={friend} />
+            {friendsList.length == 0 ? <Text>No Friends Yet</Text> : friendsList.map(friendID => {
+                return <Friend key={friendID} id={friendID} />
             })}
             <Navbar navigation={navigation} />
         </View>
