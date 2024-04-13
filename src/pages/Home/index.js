@@ -1,9 +1,9 @@
 import { ScrollView, View, Text, StyleSheet } from "react-native";
 
+import MyLoans from "../../components/MyLoans";
 import Navbar from "../../components/Navbar";
-import { globalstyles } from "../../constants/globalStyles";
-import MyLoans from "../../components/myLoans";
 
+import { globalstyles } from "../../constants/globalStyles";
 
 
 

@@ -175,12 +175,12 @@ export default function MyLoans(props) {
         <View style={styles.main_box}>
             <Text style={styles.LoansTitle}>Active Loans</Text>
             {activeLoans.length == 0 ? <Text>No Active Loans</Text> : activeLoans.map(loan => {
-                return <ActiveLoan key={loan.id} loan={loan} />;
+                return <ActiveLoan key={loan["ID"]} loan={loan} />;
             })}
             <View style={{marginTop: 50}} />
             <Text style={styles.LoansTitle}>Active Investments</Text>
             {activeInvestments.length == 0 ? <Text>No Active Investments</Text> : activeInvestments.map(loan => {
-                return <ActiveInvestment key={loan.id} loan={loan} />;
+                return <ActiveInvestment key={loan["ID"]} loan={loan} />;
             })}
             <View style={{marginTop: 150}} />
 

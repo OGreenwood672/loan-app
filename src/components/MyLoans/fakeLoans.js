@@ -31,8 +31,7 @@ const fakeLoans = [
         "due": "28/12/24",
         "set": "03/12/24",
         "installments": 0
-    }
-    ,
+    },
     {
         "ID": 2352342,
         "from": 23455,
