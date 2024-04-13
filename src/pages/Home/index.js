@@ -1,11 +1,13 @@
 import { ScrollView, View, Text, StyleSheet } from "react-native";
 
 import Navbar from "../../components/Navbar";
+import { globalstyles } from "../../constants/globalStyles";
+import MyLoans from "../../components/myLoans";
 
 
 
 
-export default function Home() {
+export default function Home({ route, navigation }) {
 
     const styles = StyleSheet.create({
         largeText: {
@@ -15,14 +17,14 @@ export default function Home() {
     })
 
     return (
-        <View>
+        <View style={globalstyles.page}>
             <ScrollView>
                 <View>
                     <Text style={styles.largeText}>HELLO</Text>
-
+                    <MyLoans />
                 </View>
             </ScrollView>
-        <Navbar />
+            <Navbar navigation={navigation} />
         </View>
     )
 

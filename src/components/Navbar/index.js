@@ -1,12 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUserGroup, faPeopleGroup, faUser } from "@fortawesome/free-solid-svg-icons";
 
-import { StyleSheet, View, Text } from "react-native"
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native"
 import { COMMUNITY, FRIENDS, HOME } from "../../constants/routes";
 
 
 
-export default function Navbar({ route, navigation }) {
+export default function Navbar(props) {
 
     const styles = StyleSheet.create({
         main_nav: {
@@ -53,27 +53,29 @@ export default function Navbar({ route, navigation }) {
     function NavButton(props) {
 
         return (
-            <View style={styles.nav_button} onClick={props.nav}>
-                <View style={styles.button_circle}>
-                    <FontAwesomeIcon style={styles.icon} size={20} icon={props.icon} />
+            <TouchableOpacity onPress={props.nav}>
+                <View style={styles.nav_button}>
+                    <View style={styles.button_circle}>
+                        <FontAwesomeIcon style={styles.icon} size={20} icon={props.icon} />
+                    </View>
+                    <Text style={styles.small_text}>{props.text}</Text>
                 </View>
-                <Text style={styles.small_text}>{props.text}</Text>
-            </View>
+            </TouchableOpacity>
 
         )
     
     }
 
     function toHome() {
-        navigation.navigate(HOME);
+        props.navigation.navigate(HOME);
     }
 
     function toFriends() {
-        navigation.navigate(FRIENDS);
+        props.navigation.navigate(FRIENDS);
     }
 
     function toCommunity() {
-        navigation.navigate(COMMUNITY);
+        props.navigation.navigate(COMMUNITY);
     }
 
     return (

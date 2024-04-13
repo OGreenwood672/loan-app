@@ -1,13 +1,17 @@
 
 import { StyleSheet } from "react-native";
 
-const styles = StyleSheet.create({
+const globalstyles = StyleSheet.create({
     background: {
         
+    },
+    page: {
+        height: "100%",
+        width: "100%",
     }
 })
 
 
 export {
-    styles,
+    globalstyles,
 }
