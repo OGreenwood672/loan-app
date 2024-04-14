@@ -65,7 +65,8 @@ export default function MyLoans(props) {
         },
         progressBarForeground: {
             height: '100%',
-            backgroundColor: '#26c511',
+            // backgroundColor: '#26c511',
+            backgroundColor: '#8c52ff',
             width: "100%",
             borderRadius: 7,
         },
@@ -80,7 +81,7 @@ export default function MyLoans(props) {
         },
         button: {
             padding: 10,
-            backgroundColor: "blue",
+            backgroundColor: "#06a9ca",
             marginTop: 5,
             width: "48%",
             display: "flex",
@@ -128,7 +129,7 @@ export default function MyLoans(props) {
         return (
             <View style={styles.activeLoanBox}>
                 <View style={styles.loanTop}>
-                    <Text style={styles.loanTitle}>Loan: {props.loan["amount"]} from {props.loan["to"]}</Text>
+                    <Text style={styles.loanTitle}>{props.loan["amount"]} from {props.loan["to"]}</Text>
                     <Text style={styles.daysLeft}>3 days left</Text>
                 </View>
                 <Text style={styles.loanNextDate}>Next Payment Due: 08/20/25</Text>
@@ -155,7 +156,7 @@ export default function MyLoans(props) {
         return (
             <View style={styles.activeLoanBox}>
                 <View style={styles.loanTop}>
-                    <Text style={styles.loanTitle}>Loan: {props.loan["amount"]} to {props.loan["from"]}</Text>
+                    <Text style={styles.loanTitle}>{props.loan["amount"]} to {props.loan["from"]}</Text>
                     <Text style={styles.daysLeft}>5 days left</Text>
                 </View>
                 <Text style={styles.loanNextDate}>Next Payment Due: 08/20/25</Text>

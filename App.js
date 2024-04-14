@@ -1,11 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator  } from '@react-navigation/native-stack';
-import Home from './src/pages/Home';
-import { COMMUNITY, FRIENDS, HOME } from './src/constants/routes';
-import Friends from './src/pages/Friends';
+import { COMMUNITY, FRIENDS, HOME, MAKEREQUEST, OFFER, VIEWREQUESTS } from './src/constants/routes';
 
-import Navbar from './src/components/Navbar';
+import Home from './src/pages/Home';
+import Friends from './src/pages/Friends';
 import Community from './src/pages/Community';
+import Offer from './src/pages/Offer';
+import MakeRequest from './src/pages/MakeRequest';
+import ViewRequests from './src/pages/ViewRequest';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -15,6 +17,9 @@ export default function App() {
         <Stack.Screen name={HOME} options={{ headerShown: false }} component={ Home } />
         <Stack.Screen name={FRIENDS} options={{ headerShown: false }} component={ Friends } />
         <Stack.Screen name={COMMUNITY} options={{ headerShown: false }} component={ Community } />
+        <Stack.Screen name={OFFER} options={{ headerShown: false }} component={ Offer } />
+        <Stack.Screen name={MAKEREQUEST} options={{ headerShown: false }} component={ MakeRequest } />
+        <Stack.Screen name={VIEWREQUESTS} options={{ headerShown: false }} component={ ViewRequests } />
       </Stack.Navigator>
     </NavigationContainer>
   );
