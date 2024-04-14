@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator  } from '@react-navigation/native-stack';
 import { COMMUNITY, FRIENDS, HOME, MAKEREQUEST, OFFER, VIEWREQUESTS } from './src/constants/routes';
 
 import Home from './src/pages/Home';
 import Friends from './src/pages/Friends';
-import Navbar from './src/components/Navbar';
 import Community from './src/pages/Community';
 import Offer from './src/pages/Offer';
 import MakeRequest from './src/pages/MakeRequest';

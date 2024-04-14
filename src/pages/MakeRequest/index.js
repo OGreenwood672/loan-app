@@ -3,6 +3,8 @@ import { StyleSheet, View, Text, TextInput, Keyboard, TouchableWithoutFeedback, 
 import { globalstyles } from "../../constants/globalStyles";
 import Navbar from "../../components/Navbar";
 import { HOME } from "../../constants/routes";
+import { contract } from "../../crypto_great";
+import { myWallet, private_key } from "../../constants/me";
 
 
 
@@ -74,9 +76,16 @@ export default function MakeRequest({ route, navigation }) {
         }
     });
 
-    function submitRequest() {
-        console.log("SUBMIT");
-        navigation.navigate(HOME);
+    async function submitRequest() {
+        
+        // let res = contract.createProduct(myWallet, "1", about, amount.toString())
+        // res.then(resp => {
+        //     console.log("SUBMIT", resp);
+        //     // navigation.navigate(HOME);
+        // }).catch(error => {
+        //     console.error("Error submitting product:", error);
+        //     // Handle the error here (e.g., display an error message to the user)
+        // });
     }
 
     return (

@@ -1,6 +1,17 @@
 import Web3 from 'web3';
-import { ethers } from 'ethers';
-const provider = new ethers.providers.JsonRpcProvider('https://rpc-evm-sidechain.xrpl.org/');
+import "@ethersproject/shims"
+// import { ethers } from 'ethers';
+// const provider = new ethers.providers.JsonRpcProvider('https://rpc-evm-sidechain.xrpl.org/');
+
+const xrpl = require("xrpl");
+const { decodeAccountID, encodeAccountID } = require("ripple-address-codec");
+const ethersWallet = require("@ethersproject/wallet");
+const ethersProvider = require("@ethersproject/providers");
+const { BridgeDoorNative__factory } = require("@peersyst/xrp-evm-contracts");
+const ethers = require("ethers");
+
+import { private_key } from '../constants/me';
+import "../constants/globals.js";
 
 const loanlisting_contractABI = [
 	{
@@ -200,40 +211,26 @@ const loanlisting_contractABI = [
 	}
 ];
 
-const contractAddress = "0x1A6796B0c164bBFDD6D3bE81f1FBC5faF3314280";
-const contract = new ethers.Contract(contractAddress, loanlisting_contractABI, provider);
+const ethersClient = new ethersProvider.JsonRpcProvider("https://rpc-evm-sidechain.xrpl.org");
+const evmWallet = new ethersWallet.Wallet(
+	"0x" + "503ffd0a8650b7ebac02051250501efd26a2c949d92df00f8e64b9209e00eaec",
+	ethersClient
+);
 
-const loadWeb3 = async () => {
-  if (window.ethereum) {
-    window.web3 = new Web3(window.ethereum);
-    await window.ethereum.enable();
-  } else if (window.web3) {
-    window.web3 = new Web3(window.web3.currentProvider);
-  } else {
-    window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!');
-  }
-};
+// Verify you have the right EVM wallet address
+console.log("EVM Address:");
+console.log(evmWallet.address);
+const contractAddress = "0x502cA193D24F3CFA4F62dd17B555a11479Ba12Ca";
+const signer = ethersClient.getSigner();
+const contract = new ethers.Contract(contractAddress, loanlisting_contractABI, signer);
 
-const loadBlockchainData = async () => {
-  const web3 = window.web3
-  // Load account
-  const accounts = await web3.eth.getAccounts()
-  this.setState({ account: accounts[0] })
-  const networkId = await web3.eth.net.getId()
-  const networkData = Marketplace.networks[networkId]
-  if(networkData) {
-    const marketplace = web3.eth.Contract(loanlisting_contractABI, networkData.address)
-    console.log(marketplace)
-  } else {
-    window.alert('Marketplace contract not deployed to detected network.')
-  }
-};
 
-const createProduct = () => {
-    const load = async () => {
-      await loadWeb3();
-      await loadBlockchainData();
-    };
+// const wallet = new ethers.Wallet(private_key);
+// const walletConnected = wallet.connect(provider);
+// const contractAddress = "0x502cA193D24F3CFA4F62dd17B555a11479Ba12Ca";
+// const signer = provider.getSigner();
+// const contract = new ethers.Contract(contractAddress, loanlisting_contractABI, signer);
 
-    load();
-  }
+export {
+	contract,
+}
