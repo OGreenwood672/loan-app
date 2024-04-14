@@ -42,7 +42,7 @@ export default function ViewRequests({ route, navigation }) {
     })
 
     function getContractInfo() {
-        const contracts = openContractsDB.filter(contract => contract["from"] === myID);
+        const contracts = openContractsDB.filter(contract => contract["from"] == myID);
         if (contracts.length > 0)
             setContractInfo(contracts[0]);
     }
@@ -70,12 +70,12 @@ export default function ViewRequests({ route, navigation }) {
     useEffect(getOffers, [contractInfo]);
 
     function MyListing() {
-
+        console.log(contractInfo)
         return (
             <View style={styles.center}>
                 <Text style={styles.title}>Your Active Listing</Text>
 
-                <CommunityPerson id={contractInfo["id"]} />
+                <CommunityPerson id={contractInfo["from"]} />
 
                 <Text style={styles.title}>Offers</Text>
 

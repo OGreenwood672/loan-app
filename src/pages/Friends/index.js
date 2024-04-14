@@ -18,7 +18,7 @@ export default function Friends({ route, navigation }) {
         }
     })
 
-    const friendsList = ["1"];
+    const friendsList = [2, 3];
 
     return (
         <View style={[globalstyles.page, styles.centered]}>

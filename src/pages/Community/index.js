@@ -33,7 +33,7 @@ export default function Community({ route, navigation }) {
 
     })
 
-    const openContractsList = [1, 2]; // List of contract IDs
+    const openContractsList = [2]; // List of contract IDs
 
     return (
         <View style={globalstyles.page}>

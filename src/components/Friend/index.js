@@ -10,7 +10,7 @@ export default function Friend(props) {
         friend_main: {
             width: "90%",
             height: 80,
-            margin: "auto",
+            margin: 7,
             borderRadius: 10,
             borderWidth: 2,
             borderColor: "black",
