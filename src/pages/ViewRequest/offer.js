@@ -63,6 +63,7 @@ export default function Offer(props) {
             width: "60%",
             margin: 10,
             borderRadius: 10,
+            borderWidth: 2,
         },
         acceptOfferText: {
             fontSize: 20,
@@ -115,9 +116,9 @@ export default function Offer(props) {
                 <Text style={styles.fact_text}>{props.info["installments"]}%</Text>
             </View>
 
-            <TouchableOpacity style={styles.acceptOfferButton} onPress={acceptOffer}>
+            {props.showButton ? <TouchableOpacity style={styles.acceptOfferButton} onPress={acceptOffer}>
                 <Text style={styles.acceptOfferText}>Accept</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> : <View />}
 
         </View>
     )

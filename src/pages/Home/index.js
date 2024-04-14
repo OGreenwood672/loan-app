@@ -55,7 +55,7 @@ export default function Home({ route, navigation }) {
                         <Text style={styles.requestButtonText}>Make Request</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.requestButton} onPress={() => navigation.navigate(VIEWREQUESTS)}>
-                        <Text style={styles.requestButtonText}>View Requests</Text>
+                        <Text style={styles.requestButtonText}>View Offers</Text>
                     </TouchableOpacity>
                 </View>
                 <View>

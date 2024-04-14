@@ -67,7 +67,9 @@ export default function CommunityPerson(props) {
     const [contractInfo, setContractInfo] = useState({});
 
     function getContractInfo(id) {
-        setContractInfo(openContractsDB[id]);
+        const contracts = openContractsDB.filter(contract => contract["from"] === id);
+        if (contracts.length > 0)
+            setContractInfo(contracts[0]);
     }
     useEffect(() => getContractInfo(props.id), []);
 
@@ -81,7 +83,6 @@ export default function CommunityPerson(props) {
     function offer() {
         props.navigation.navigate(OFFER, { contractID: props.id })
     }
-
     return (
         <View style={styles.person_main}>
             <View style={styles.person_top}>
