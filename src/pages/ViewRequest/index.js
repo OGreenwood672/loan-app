@@ -1,17 +1,22 @@
-import { StyleSheet, View, Image, Text } from "react-native";
+import { StyleSheet, View, Image, Text, ScrollView } from "react-native";
 import { globalstyles } from "../../constants/globalStyles";
 import Navbar from "../../components/Navbar";
 import { useEffect, useState } from "react";
 
 import openContractsDB from "../../components/CommunityPerson/contracts";
 import userDB from "../../constants/usersDB";
+import alloffers from "../../components/CommunityPerson/alloffers";
 
 import { default_contract, default_person } from "../../constants/defaults";
+
+import Offer from "./offer";
 
 export default function ViewRequests({ route, navigation }) {
 
     const [personInfo, setPersonInfo] = useState(default_person);
     const [contractInfo, setContractInfo] = useState(default_contract);
+
+    const [offers, setOffers] = useState([]);
 
     const styles = StyleSheet.create({
         center: {
@@ -59,6 +64,10 @@ export default function ViewRequests({ route, navigation }) {
         person_credibility: {
             color: "green",
             fontSize: 18,
+        },
+        title: {
+            fontSize: 25,
+            margin: 25,
         }
     })
 
@@ -74,31 +83,48 @@ export default function ViewRequests({ route, navigation }) {
     }
     useEffect(() => getPerson(contractInfo["from"]), [contractInfo]);
 
+    function getOffers() {
+        if (Object.keys(contractInfo).length === 0) return; // Guard clause to handle case where contractInfo is not available yet
+    
+        const _offers = alloffers.filter(offer => offer.contractID === contractInfo.id);
+        setOffers(_offers);
+    }
+    useEffect(getOffers, [contractInfo]);
+
     function MyListing() {
 
         return (
-            <View style={styles.person_main}>
-                <View style={styles.person_top}>
-                    <View style={[styles.person_section, {width: "20%"}]}>
-                        {personInfo["pfp"] !== "" ? <Image
-                            source={{ uri: personInfo["pfp"] }}
-                            style={styles.pfp_image}
-                            onError={() => console.log('Error loading pfp image')}
-                        /> : <View />}
+            <View style={styles.center}>
+                <View style={styles.person_main}>
+                    <View style={styles.person_top}>
+                        <View style={[styles.person_section, {width: "20%"}]}>
+                            {personInfo["pfp"] !== "" ? <Image
+                                source={{ uri: personInfo["pfp"] }}
+                                style={styles.pfp_image}
+                                onError={() => console.log('Error loading pfp image')}
+                            /> : <View />}
+                        </View>
+                        <View style={[styles.person_section, {width: "34%"}]}>
+                            <Text style={styles.person_name}>{personInfo["name"]}</Text>
+                        </View>
+                        <View style={[styles.person_section, {width: "23%"}]}>
+                            <Text style={styles.person_credibility}>{Math.round(personInfo["credibility"])}%</Text>
+                        </View>
+                        <View style={[styles.person_section, {width: "23%"}]}>
+                            <Text style={styles.contract_amount}>£{contractInfo["amount"]}</Text>
+                        </View>
                     </View>
-                    <View style={[styles.person_section, {width: "34%"}]}>
-                        <Text style={styles.person_name}>{personInfo["name"]}</Text>
-                    </View>
-                    <View style={[styles.person_section, {width: "23%"}]}>
-                        <Text style={styles.person_credibility}>{Math.round(personInfo["credibility"])}%</Text>
-                    </View>
-                    <View style={[styles.person_section, {width: "23%"}]}>
-                        <Text style={styles.contract_amount}>£{contractInfo["amount"]}</Text>
+                    <View style={styles.about}>
+                        <Text>{contractInfo["about"]}</Text>
                     </View>
                 </View>
-                <View style={styles.about}>
-                    <Text>{contractInfo["about"]}</Text>
-                </View>
+
+                <Text style={styles.title}>Offers</Text>
+
+                {offers.map(offer => {
+                    return <Offer key={offer["from"]} info={offer} />
+                })}
+
             </View>
         )
 
@@ -106,11 +132,13 @@ export default function ViewRequests({ route, navigation }) {
 
     return (
         <View style={[globalstyles.page, styles.center]}>
+            <ScrollView>
+                <View style={{height: 70}} />
 
-            <View style={{height: 70}} />
+                {Object.keys(contractInfo).length === 0 && Object.keys(personInfo).length === 0 ? <View /> : <MyListing />}
 
-            {Object.keys(contractInfo).length === 0 && Object.keys(personInfo).length === 0 ? <View /> : <MyListing />}
-            
+                <View style={{height: 125}} />
+            </ScrollView>
             <Navbar navigation={navigation} />
         </View>
     )
