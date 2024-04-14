@@ -281,7 +281,7 @@ export default function MakeRequest({ route, navigation }) {
             "503ffd0a8650b7ebac02051250501efd26a2c949d92df00f8e64b9209e00eaec",
             provider2
         );
-        const loancontractAddress = "0x1A6796B0c164bBFDD6D3bE81f1FBC5faF3314280";
+        const loancontractAddress = "0x70d38E20B8d9EDf6c4Be7B5D1A3999FF9b90BD37";
         const contract = new ethers.Contract(loancontractAddress, loanlisting_contractABI, evmWallet);
         // contract.connect(evmWallet);
         res = await contract.createProduct(address, "1", about, amount.toString(),{gasLimit:1000000})
