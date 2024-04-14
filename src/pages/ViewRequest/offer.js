@@ -110,12 +110,12 @@ export default function Offer(props) {
 
             <View style={styles.fact}>
                 <Text style={styles.fact_text}>Loan Days</Text>
-                <Text style={styles.fact_text}>{props.info["loanDays"]}%</Text>
+                <Text style={styles.fact_text}>{props.info["loanDays"]}</Text>
             </View>
 
             <View style={[styles.fact, {borderBottomWidth: 1}]}>
                 <Text style={styles.fact_text}>Installments</Text>
-                <Text style={styles.fact_text}>{props.info["installments"]}%</Text>
+                <Text style={styles.fact_text}>{props.info["installments"]}</Text>
             </View>
 
             {props.showButton ? <TouchableOpacity style={styles.acceptOfferButton} onPress={acceptOffer}>

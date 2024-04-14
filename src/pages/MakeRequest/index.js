@@ -95,7 +95,7 @@ export default function MakeRequest({ route, navigation }) {
                 <Text style={styles.title}>Make Request</Text>
 
                 <View style={styles.inputbox}>
-                    <Text style={styles.input_tag}>Amount</Text>
+                    <Text style={styles.input_tag}>Amount (£)</Text>
                     <View style={styles.inputContainer}>
                         <TextInput
                             style={styles.input}
