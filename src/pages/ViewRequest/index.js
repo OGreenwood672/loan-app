@@ -80,7 +80,7 @@ export default function ViewRequests({ route, navigation }) {
                 <Text style={styles.title}>Offers</Text>
 
                 {offers.map((offer, index) => {
-                    return <Offer key={index} info={offer} showButton={true} />
+                    return <Offer key={index} info={offer} amount={contractInfo["amount"]} showButton={true} />
                 })}
 
             </View>

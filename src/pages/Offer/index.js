@@ -3,7 +3,7 @@ import CommunityPerson from "../../components/CommunityPerson";
 import { globalstyles } from "../../constants/globalStyles";
 import Navbar from "../../components/Navbar";
 import { useState } from "react";
-import { COMMUNITY, HOME } from "../../constants/routes";
+import { HOME } from "../../constants/routes";
 
 
 
@@ -18,7 +18,7 @@ export default function Offer({ route, navigation }) {
         makeoffer: {
             fontSize: 30,
             alignSelf: "center",
-            marginBottom: 20,
+            marginBottom: 20
         },
         center: {
             display: "flex",

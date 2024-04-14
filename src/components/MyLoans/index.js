@@ -2,6 +2,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native"
 
 import fakeLoans from "./fakeLoans"
 import { useState, useEffect } from "react"
+import userDB from "../../constants/usersDB";
 
 export default function MyLoans(props) {
 
@@ -117,7 +118,7 @@ export default function MyLoans(props) {
     useEffect(getActiveInvestments, [userID]);
 
     function getName(id) {
-        
+        // return userDB.filter(user => user["id"] == id)[0]
     }
 
     function payAll() {

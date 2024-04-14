@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from "rea
 import { default_person } from "../../constants/defaults";
 
 import userDB from "../../constants/usersDB";
+import { transfer } from "../../crypto_great";
 
 export default function Offer(props) {
 
@@ -80,6 +81,7 @@ export default function Offer(props) {
     useEffect(getPerson, []);
 
     function acceptOffer() {
+        transfer(props.amount);
         console.log("ACCEPTED");
     }
 
