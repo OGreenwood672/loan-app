@@ -1,13 +1,11 @@
+import "@ethersproject/shims"
+
 import { useState } from "react";
 import { StyleSheet, View, Text, TextInput, Keyboard, TouchableWithoutFeedback, TouchableOpacity } from "react-native";
 import { globalstyles } from "../../constants/globalStyles";
 import Navbar from "../../components/Navbar";
+import { ethers } from 'ethers';
 import { HOME } from "../../constants/routes";
-import { contract } from "../../crypto_great";
-import { myWallet, private_key } from "../../constants/me";
-
-
-
 
 export default function MakeRequest({ route, navigation }) {
 
@@ -77,8 +75,217 @@ export default function MakeRequest({ route, navigation }) {
     });
 
     async function submitRequest() {
-        
-        // let res = contract.createProduct(myWallet, "1", about, amount.toString())
+        const address = ethers.utils.getAddress("0xC0b3bf772fd9f4ad6f996467a06F85053df23Ff3");
+        // console.log("ADDRESS", address);
+        const loanlisting_contractABI = [
+            {
+                "inputs": [
+                    {
+                        "internalType": "address payable",
+                        "name": "_wallet_address",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_set_date",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_about",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_amount",
+                        "type": "string"
+                    }
+                ],
+                "name": "createProduct",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": false,
+                        "internalType": "uint256",
+                        "name": "id",
+                        "type": "uint256"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "address payable",
+                        "name": "wallet_address",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "set_date",
+                        "type": "string"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "about",
+                        "type": "string"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "amount",
+                        "type": "string"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "bool",
+                        "name": "purchased",
+                        "type": "bool"
+                    }
+                ],
+                "name": "ProductCreated",
+                "type": "event"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": false,
+                        "internalType": "uint256",
+                        "name": "id",
+                        "type": "uint256"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "address",
+                        "name": "loaner_wallet_address",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "address payable",
+                        "name": "loanee_wallet_address",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "set_date",
+                        "type": "string"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "about",
+                        "type": "string"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "amount",
+                        "type": "string"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "bool",
+                        "name": "purchased",
+                        "type": "bool"
+                    }
+                ],
+                "name": "ProductPurchased",
+                "type": "event"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "purchaseProduct",
+                "outputs": [],
+                "stateMutability": "payable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "productCount",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "products",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "id",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "address payable",
+                        "name": "wallet_address",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "set_date",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "about",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "amount",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "purchased",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            }
+        ]
+
+        const provider2 = new ethers.providers.JsonRpcProvider('https://rpc-evm-sidechain.xrpl.org/');
+
+        const evmWallet = new ethers.Wallet(
+            "503ffd0a8650b7ebac02051250501efd26a2c949d92df00f8e64b9209e00eaec",
+            provider2
+        );
+        const loancontractAddress = "0x1A6796B0c164bBFDD6D3bE81f1FBC5faF3314280";
+        const contract = new ethers.Contract(loancontractAddress, loanlisting_contractABI, evmWallet);
+        // contract.connect(evmWallet);
+        res = await contract.createProduct(address, "1", about, amount.toString(),{gasLimit:1000000})
+        console.log("SUBMIT", res);
         // res.then(resp => {
         //     console.log("SUBMIT", resp);
         //     // navigation.navigate(HOME);
@@ -86,6 +293,7 @@ export default function MakeRequest({ route, navigation }) {
         //     console.error("Error submitting product:", error);
         //     // Handle the error here (e.g., display an error message to the user)
         // });
+        navigation.navigate(HOME);
     }
 
     return (
@@ -95,7 +303,7 @@ export default function MakeRequest({ route, navigation }) {
                 <Text style={styles.title}>Make Request</Text>
 
                 <View style={styles.inputbox}>
-                    <Text style={styles.input_tag}>Amount (£)</Text>
+                    <Text style={styles.input_tag}>Amount</Text>
                     <View style={styles.inputContainer}>
                         <TextInput
                             style={styles.input}

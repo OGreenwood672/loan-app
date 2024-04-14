@@ -70,7 +70,6 @@ export default function ViewRequests({ route, navigation }) {
     useEffect(getOffers, [contractInfo]);
 
     function MyListing() {
-        console.log(contractInfo)
         return (
             <View style={styles.center}>
                 <Text style={styles.title}>Your Active Listing</Text>
