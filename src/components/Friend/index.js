@@ -42,7 +42,7 @@ export default function Friend(props) {
 
     const [personInfo, setPersonInfo] = useState(default_person);
     function getPerson(id) {
-        let user = userDB[id];
+        let user = userDB.filter(user => id == user["id"])[0];
         if (user)
             setPersonInfo(user);
     }

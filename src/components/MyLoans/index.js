@@ -118,7 +118,7 @@ export default function MyLoans(props) {
     useEffect(getActiveInvestments, [userID]);
 
     function getName(id) {
-        // return userDB.filter(user => user["id"] == id)[0]
+        return userDB.filter(user => user["id"] == id)[0]["name"]
     }
 
     function payAll() {
@@ -133,7 +133,7 @@ export default function MyLoans(props) {
         return (
             <View style={styles.activeLoanBox}>
                 <View style={styles.loanTop}>
-                    <Text style={styles.loanTitle}>Loan: £{props.loan["amount"]} from {props.loan["to"]}</Text>
+                    <Text style={styles.loanTitle}>Loan: £{props.loan["amount"]} from {getName(props.loan["to"])}</Text>
                     <Text style={styles.daysLeft}>3 days left</Text>
                 </View>
                 <Text style={styles.loanNextDate}>Next Payment Due: 08/20/25</Text>

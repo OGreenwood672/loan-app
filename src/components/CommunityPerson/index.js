@@ -74,7 +74,7 @@ export default function CommunityPerson(props) {
     useEffect(() => getContractInfo(props.id), []);
 
     function getPerson(id) {
-        let user = userDB[id];
+        let user = userDB.filter(user => user["id"] == id)[0];
         if (user)
             setPersonInfo(user);
     }

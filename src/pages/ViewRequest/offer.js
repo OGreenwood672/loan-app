@@ -74,7 +74,7 @@ export default function Offer(props) {
     });
 
     function getPerson() {
-        let user = userDB[props.info["from"]];
+        let user = userDB.filter(user => user["id"] == props.info["from"])[0];
         if (user)
             setPersonInfo(user);
     }

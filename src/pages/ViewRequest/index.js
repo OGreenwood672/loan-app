@@ -49,7 +49,7 @@ export default function ViewRequests({ route, navigation }) {
     useEffect(getContractInfo, []);
 
     function getPerson() {
-        let user = userDB[myID];
+        let user = userDB.filter(user => user["id"] == myID);
         if (user)
             setPersonInfo(user);
     }
